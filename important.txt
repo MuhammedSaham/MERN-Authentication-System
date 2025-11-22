@@ -1,0 +1,188 @@
+react is overwriting the dom whatever you runjsx it will change to html css and js and rerender the dom 
+rerender particular companant change with the particular value
+reload every thing reloded
+
+when we login to the system you have to verify the user that why our id will checked by hashing our input and from the database hashing input
+
+same password  it will check it and produce jwt token 
+
+the token has the user id like who the user is for ex leturer or student they will provide the fuctionts (get set) based on that 
+
+cookie have the token(user id) and expirey date it eill embeded in the cookie
+
+the user id in the cookies will be checked in middle ware
+
+for axios if we use cookies instead of local storage it will call cookies every time
+
+
+*****************************************************from chatgpt and purplexity*********************************************************
+################################1>purplexity
+
+The description in the query about React re-rendering, user authentication in MERN stack, JWT token usage, and cookie handling is generally correct but can be refined for clarity and best practices.
+
+React Re-rendering
+React overwrites the DOM by rendering HTML, CSS, and JS based on the virtual DOM.
+
+React updates only the changed parts by comparing the new virtual DOM with the old one (reconciliation).
+
+You can re-render a specific component by changing its state or props; React doesn't reload everything but updates affected parts efficiently.
+
+MERN Stack Authentication Flow
+User login involves verifying the user by hashing the input password and comparing it with the hashed password in the database (usually using bcrypt).
+
+If credentials match, a JWT token is generated containing the user ID and possibly the role (e.g., lecturer or student).
+
+The token is returned to the client and stored in a cookie with expiration.
+
+The cookie with the token is sent with requests and checked in middleware for verification and role-based access.
+
+JWT Storage in Cookies vs Local Storage
+Storing JWT tokens in cookies (preferably HttpOnly and Secure) is generally considered more secure than localStorage because it prevents XSS attacks.
+
+Cookies are sent automatically with HTTP requests, making auth easier on the server side.
+
+Local storage is vulnerable to JavaScript access and XSS but easier for client-side manipulation.
+
+Using cookies with axios means cookies are sent automatically with each request if configured properly.
+
+Summary
+React re-renders components by updating specific parts of the DOM based on state or props changes, not reloading everything.
+
+Authentication in MERN involves hashing passwords and verifying them, generating JWT tokens containing user info, storing them securely in cookies, and validating tokens via middleware.
+
+Cookies with JWT are generally more secure than local storage and useful for server-based auth checks, and axios can handle them automatically.
+
+This approach is aligned with best practices for MERN stack development with JWT authentication and React frontend.
+
+############################2>chatgpt
+
+🔹 React Rendering
+
+React does not overwrite the entire DOM; instead, it uses a Virtual DOM to compare changes and updates only the parts of the UI that need to change (efficient re-rendering).
+
+When a state/prop changes in a component, only that component (and children depending on that data) re-renders.
+
+This is why React apps feel fast — instead of reloading the whole page, it updates only what’s necessary.
+
+🔹 User Authentication Flow (MERN)
+
+Registration / Login
+
+Passwords are hashed (e.g., with bcrypt) before storing in the database.
+
+On login, user input password is hashed and compared with the hashed password in DB.
+
+If valid → JWT token is generated.
+
+JWT Token
+
+Contains payload (e.g., userId, role: "student" | "lecturer").
+
+Server signs it with a secret.
+
+Token is sent to the frontend (stored in cookie or localStorage).
+
+Cookies vs Local Storage
+
+Cookies (HttpOnly, Secure, SameSite) → safer, automatically sent with requests.
+
+Local Storage → easier but more vulnerable (XSS).
+
+In production, cookies are usually preferred.
+
+🔹 Middleware (Server Side)
+
+Middleware checks:
+
+If a JWT token exists in the cookie.
+
+Verifies token with server secret.
+
+Extracts userId and role and attaches them to req object.
+
+Allows route access based on role (student/lecturer/admin).
+
+🔹 Axios with Cookies
+
+If cookies are used:
+
+You must enable credentials in Axios:
+
+axios.defaults.withCredentials = true;
+
+
+Backend must allow credentials in CORS.
+
+✅ So your notes are correct in concept, but React doesn’t "reload everything" — it only re-renders efficiently.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+element is an prop(property) of react its like parameters in JavaScript
+
+
+The React hooks useState and useEffect are foundational for managing state and side effects in functional components.
+
+useState----------------------------------------
+The useState hook allows adding state to functional components.
+
+It returns a pair: the current state value and a function to update it.
+
+When state is updated via the setter function (e.g., setCount), React re-renders the component with the new state.
+
+You can have multiple state variables by calling useState multiple times.
+
+useEffect-----------------------------------------
+The useEffect hook lets you perform side effects in components, such as data fetching, DOM updates, or event listeners.
+
+It runs after the component renders.
+
+You pass a function to useEffect which React calls after rendering. Optionally, a dependency array specifies when to re-run the effect.
+
+For example, to update the document title based on count:
+
+Common Usage Together
+useState holds dynamic data.
+
+useEffect reacts to changes in state or props to perform side effects.
+
+
+whenver webpage loads useEffect will run we can change it by state change it will run when the state changes
+
+
+credentials mean just username password true;;;;;;
+
+
+
+
+############################################################################################################3
+
+useContext
+
+like using it in the public place to choose to have it
+
+in App context we are making that as public but un the main its in browser we have to make it public can acccess the context
+ return(
+        <AppContent.Provider value={value}>
+            {props.children}
+        </AppContent.Provider>
+    )
+
+to
+
+if we get the context in main we can use (we are using provider with props)
+app component will be warpped in usercontext(public place)
+
+
+
+
+
+
+
+
+
+
+
+
